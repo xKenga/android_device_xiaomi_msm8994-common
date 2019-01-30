@@ -7,21 +7,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
     rild.libargs=-d[SPACE]/dev/smd0 \
-    persist.rild.nitz_plmn="" \
-    persist.rild.nitz_long_ons_0="" \
-    persist.rild.nitz_long_ons_1="" \
-    persist.rild.nitz_long_ons_2="" \
-    persist.rild.nitz_long_ons_3="" \
-    persist.rild.nitz_short_ons_0="" \
-    persist.rild.nitz_short_ons_1="" \
-    persist.rild.nitz_short_ons_2="" \
-    persist.rild.nitz_short_ons_3="" \
     ril.subscription.types=RUIM \
     persist.sys.ssr.restart_level=ALL_ENABLE \
     persist.sys.ssr.enable_ramdumps=1 \
     persist.radio.add_power_save=1 \
-    persist.radio.multisim.config=dsds \
-    DEVICE_PROVISIONED=1
+    persist.radio.multisim.config=dsds
 
 # Start in TD-SCDMA, GSM/WCDMA and LTE mode
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -78,12 +68,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.aac_51_output_enabled=true \
     av.debug.disable.pers.cache=true \
 
-#3379827: Decimal sum after adding WAV parser flag
-#37491 is decimal sum of supported codecs in AAL
-#codecs: DivX DivXHD AVI AC3 ASF AAC QCP DTS 3G2 MP2TS
-PRODUCT_PROPERTY_OVERRIDES += \
-    mm.enable.qcom_parser=3379827
-
 # Enable AwesomePlayer stats
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.sf.statistics=1
@@ -122,16 +106,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610
 
-# System property for cabl
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qualcomm.cabl=0
-
-# System property for AD
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qcom.ad=1 \
-    ro.qcom.ad.calib.data=/system/etc/calib.cfg \
-    ro.qcom.ad.sensortype=2
-
 # Display feature support
 # bit0-ColorPrefer bit1-EyeCare bit2-AD bit3-CE bit4-CABC bit5-SRGB
 
@@ -162,11 +136,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # initialization timeout
 PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.enable_timeout_ms=12000
-
-#Simulate sdcard on /data/media
-#
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.fuse_sdcard=true
 
 #system prop for Bluetooth SOC type
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -242,10 +211,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.voice.path.for.pcm.voip=true
 
-#selects CoreSight configuration to enable
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.debug.coresight.config=stm-events
-
 # Enable manual network selection function and distinguish 2G/3G/4G
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.rat_on=combine
@@ -254,21 +219,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.force_on_dc=true
 
-#Enable short oos enhancement
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.oosenhance.enable=true \
-    ro.sys.oosenhance.timer=20000
-
 # button jack mode & switch
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.button_jack_profile=volume \
     persist.sys.button_jack_switch=0
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.mcd_config_file=/system/etc/mcd_default.conf \
-    persist.sys.klo=on \
-    persist.sys.whetstone.level=2 \
-    persist.sys.frozenKernel=true \
     ro.carrier=unknown \
     ro.vendor.extension_library=libqti-perfd-client.so \
     persist.radio.custom_ecc=1 \
@@ -280,9 +236,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.btconfig.dev=/dev/ttyHS0 \
     ro.btconfig.vendor=qcom \
     ro.btconfig.chip=QCA6164 \
-    persist.power.useautobrightadj=true \
     persist.radio.apm_sim_not_pwdn=1
-
-# Maintainer
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.mk.maintainer=guaiyihu

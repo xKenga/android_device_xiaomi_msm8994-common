@@ -55,7 +55,7 @@ USE_DEVICE_SPECIFIC_GPS := true
 USE_DEVICE_SPECIFIC_LOC_API := true
 
 # ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -89,11 +89,8 @@ WCNSS_FILTER_USES_SIBS := true
 # EXFAT
 TARGET_EXFAT_DRIVER := exfat
 
-# Fonts
-USE_REDUCED_CJK_FONT_WEIGHTS := true
-
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/xiaomi/leo
+TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8994
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 androidboot.selinux=permissive
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -105,23 +102,17 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
 # Partition
-BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864 #64M
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864 #64M
-BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184 #384M
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
+BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
 TARGET_USERIMAGES_USE_EXT4 := true
-ifneq (,$(filter linux darwin, $(HOST_OS)))
 TARGET_USERIMAGES_USE_F2FS := true
-endif
-BOARD_FLASH_BLOCK_SIZE := 131072 #262144 #(BOARD_KERNEL_PAGESIZE * 64)
+BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
-# Force camera module to be compiled only in 32-bit mode on 64-bit systems
-# Once camera module can run in the native mode of the system (either
-# 32-bit or 64-bit), the following line should be deleted
-BOARD_QTI_CAMERA_32BIT_ONLY := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
 TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
@@ -154,6 +145,7 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR := true
 
 # Power
+TARGET_HAS_NO_POWER_STATS := true
 TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
 
@@ -179,7 +171,7 @@ BOARD_HAS_QCOM_WLAN_SDK         := true
 BOARD_HOSTAPD_DRIVER            := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB       :=lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE               := qcwcn
-BOARD_WPA_SUPPLICANT_DRIVER :=  NL80211
+BOARD_WPA_SUPPLICANT_DRIVER     :=  NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 TARGET_USES_WCNSS_CTRL          := true
 WIFI_DRIVER_MODULE_NAME         := "wlan"
@@ -188,29 +180,20 @@ WIFI_DRIVER_FW_PATH_STA         := "sta"
 TARGET_USES_QCOM_WCNSS_QMI      := true
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
 
-# Recovery
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.full
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-
 # Releasetools
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm8994
 TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    $(COMMON_PATH)/sepolicy
 
 # Shims
-TARGET_LD_SHIM_LIBS += /system/vendor/lib64/libril-qc-qmi-1.so|rild_socket.so:/system/vendor/lib/libmmcamera2_stats_algorithm.so|libshim_atomic.so:/system/vendor/lib64/libizat_core.so|libshims_get_process_name.so
-
-# TWRP Support
-ifeq ($(WITH_TWRP),true)
--include $(COMMON_PATH)/twrp/twrp.mk
-endif
+TARGET_LD_SHIM_LIBS += \
+    /system/vendor/lib/libmmcamera2_stats_algorithm.so|libshim_atomic.so \
+    /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
+    /system/vendor/lib64/libril-qc-qmi-1.so|rild_socket.so
 
 # Inherit from the proprietary version
 -include vendor/xiaomi/msm8994-common/BoardConfigVendor.mk
