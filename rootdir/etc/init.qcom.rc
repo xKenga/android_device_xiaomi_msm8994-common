@@ -289,13 +289,8 @@ on post-fs-data
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
-    # RIDL data
-    mkdir /data/misc/SelfHost/ 0710 system shell
-    mkdir /data/misc/SelfHost/QCLogs/ 2750 system shell
-    mkdir /data/misc/SelfHost/QCLogs/temp/ 0700 system shell
-    mkdir /data/misc/SelfHost/storage/ 0700 system shell
-    mkdir /data/misc/SelfHost/Running/ 2750 system shell
-    mkdir /data/misc/SelfHost/socket/ 2770 system system
+    # Set aggressive read ahead
+    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
 
     chown system system /sys/devices/virtual/graphics/fb0/rgb
     chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
@@ -488,6 +483,8 @@ service qcom-post-boot /system/vendor/bin/init.qcom.post_boot.sh
     oneshot
 
 on property:sys.boot_completed=1
+    # Set disk read ahead to 512kb
+    write /sys/block/mmcblk0/queue/read_ahead_kb 512
     start qcom-post-boot
 
 on property:ro.data.large_tcp_window_size=true
@@ -506,16 +503,6 @@ service charger /charger
     group system graphics
     seclabel u:r:charger:s0
     writepid /dev/cpuset/system-background/tasks
-
-service qbcharger /charger -m 1
-    disabled
-    oneshot
-
-on property:sys.qbcharger.enable=true
-    start qbcharger
-
-on property:sys.qbcharger.enable=false
-    stop qbcharger
     
 service msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     socket msm_irqbalance seqpacket 660 root system

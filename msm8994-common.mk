@@ -9,8 +9,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/msm8994-common/msm8994-common-ve
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
-PRODUCT_ENFORCE_RRO_TARGETS := \
-    framework-res
+PRODUCT_ENFORCE_RRO_TARGETS := framework-res
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -251,7 +250,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.msm8994
+    android.hardware.vibrator@1.0-service.lineage
 
 # Wifi
 PRODUCT_PACKAGES += \
