@@ -1,7 +1,7 @@
 <manifest version="1.0" type="device">
     <hal format="hidl">
         <name>android.hardware.audio</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>2.0</version>
         <interface>
             <name>IDevicesFactory</name>
@@ -10,7 +10,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.audio.effect</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>2.0</version>
         <interface>
             <name>IEffectsFactory</name>
@@ -19,7 +19,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.bluetooth</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
             <name>IBluetoothHci</name>
@@ -68,7 +68,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.gatekeeper</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
             <name>IGatekeeper</name>
@@ -77,7 +77,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.gnss</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
             <name>IGnss</name>
@@ -95,7 +95,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.graphics.composer</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>2.1</version>
         <interface>
             <name>IComposer</name>
@@ -113,7 +113,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.keymaster</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>3.0</version>
         <interface>
             <name>IKeymasterDevice</name>
@@ -144,7 +144,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.memtrack</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
             <name>IMemtrack</name>
@@ -284,25 +284,4 @@
             <instance>cnd</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>vendor.mokee.power</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IMoKeePower</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mokee.livedisplay</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IColor</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <sepolicy>
-        <version>0.0</version>
-    </sepolicy>
 </manifest>

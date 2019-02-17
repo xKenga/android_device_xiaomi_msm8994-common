@@ -7,8 +7,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/msm8994-common/msm8994-common-ve
 -include $(LOCAL_PATH)/system_prop.mk
 
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-mokee
+    $(LOCAL_PATH)/overlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
@@ -93,6 +92,7 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-service \
     android.hardware.audio.effect@2.0-impl \
     android.hardware.soundtrigger@2.0-impl \
     audio.a2dp.default \
@@ -107,9 +107,10 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
     bdaddr_xiaomi \
-    libbt-vendor \
-    android.hardware.bluetooth@1.0-impl
+    libbt-vendor
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -131,27 +132,31 @@ PRODUCT_PACKAGES += \
     
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
 
 # GNSS HAL
 PRODUCT_PACKAGES += \
-    libshims_get_process_name \
-    android.hardware.gnss@1.0-impl
+    android.hardware.gnss@1.0-impl \
+    android.hardware.gnss@1.0-service \
+    libshims_get_process_name
 
 # Graphics
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
     copybit.$(BOARD_PLATFORM) \
     gralloc.$(BOARD_PLATFORM) \
     hwcomposer.$(BOARD_PLATFORM) \
     memtrack.$(BOARD_PLATFORM) \
     liboverlay \
     libtinyxml \
-    libgenlock \
-    android.hardware.graphics.allocator@2.0-impl \
-    android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.mapper@2.0-impl \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.graphics.composer@2.1-impl
+    libgenlock
 
 # IPv6
 PRODUCT_PACKAGES += \
@@ -169,7 +174,8 @@ PRODUCT_PACKAGES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -177,11 +183,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.xiaomi_msm8994
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.mokee.livedisplay@1.0-service-legacymm
+    android.hardware.light@2.0-service.msm8994
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -249,7 +251,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.mokee
+    android.hardware.vibrator@1.0-service.msm8994
 
 # Wifi
 PRODUCT_PACKAGES += \

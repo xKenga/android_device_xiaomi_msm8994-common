@@ -124,26 +124,6 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
-#if 0
-    if (id == 0) { // back camera
-        params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES,
-            "1920x1080,1280x960,1280x720,720x480,640x480,576x432,320x240");
-        params.set(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO,
-            "1920x1080");
-        params.set(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES,
-            "4096x2160,3840x2160,1920x1080,1280x720,864x480,800x480,720x480,640x480,320x240,176x144");
-        params.set("supported-live-snapshot-sizes",
-            "3200x2400,2592x1944,2048x1536,1920x1080,1600x1200,1280x768,1280x720,1024x768,800x600,864x480,800x480,720x480,640x480,320x240");
-    } else if (id == 1) { // front camera
-        params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES,
-            "1920x1080,1280x960,1280x720,720x480,640x480,576x432,320x240");
-        params.set(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO,
-            "1920x1080");
-        params.set(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES,
-            "1920x1080,1280x720,864x480,800x480,720x480,640x480,320x240,176x144");
-    }
-#endif
-
 #if !LOG_NDEBUG
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();

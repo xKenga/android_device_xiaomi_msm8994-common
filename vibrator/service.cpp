@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The LineageOS Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,38 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#define LOG_TAG "android.hardware.light@2.0-service.msm8994"
+#define LOG_TAG "android.hardware.vibrator@1.0-service.msm8994"
 
 #include <hidl/HidlTransportSupport.h>
 
-#include "Light.h"
+#include "Vibrator.h"
 
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 
-using android::hardware::light::V2_0::ILight;
-using android::hardware::light::V2_0::implementation::Light;
+using android::hardware::vibrator::V1_0::IVibrator;
+using android::hardware::vibrator::V1_0::implementation::Vibrator;
 
 using android::OK;
 using android::sp;
 using android::status_t;
 
 int main() {
-    android::sp<ILight> service = new Light();
+    android::sp<IVibrator> vibrator = new Vibrator();
 
     configureRpcThreadpool(1, true);
 
-    status_t status = service->registerAsService();
+    status_t status = vibrator->registerAsService();
     if (status != OK) {
-        ALOGE("Cannot register Light HAL service.");
+        ALOGE("Cannot register Vibrator HAL service.");
         return 1;
     }
 
-    ALOGI("Light HAL service ready.");
+    ALOGI("Vibrator HAL service ready.");
 
     joinRpcThreadpool();
 
-    ALOGI("Light HAL service failed to join thread pool.");
+    ALOGI("Vibrator HAL service failed to join thread pool.");
     return 1;
 }
