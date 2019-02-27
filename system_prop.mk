@@ -191,7 +191,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ##fluencetype can be "fluence" or "fluencepro" or "none"
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.audio.sdk.fluencetype=fluence \
-    persist.vendor.audio.fluence.voicecall=true \
+    persist.vendor.audio.fluence.voicecall=false \
     persist.vendor.audio.fluence.voicerec=false \
     persist.vendor.audio.fluence.speaker=false \
     ro.config.media_vol_steps=25 \
